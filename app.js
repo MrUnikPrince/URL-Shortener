@@ -5,6 +5,13 @@ const mongoose = require('mongoose');
 require('./config/mongoose');
 const app =  express();
 
+// Setting Views
+app.set('view engine', 'ejs');
+app.use(express.urlencoded({ extended: false }));
+
+// Routes
+const shortUrlRoutes = require('./routes/shortUrlRoutes');
+app.use('/', shortUrlRoutes);
 
 // Server
 app.listen(PORT, (err)=>{
