@@ -28,11 +28,8 @@ router.get('/', async (req, res) => {
 
 /**
  * POST /shorten
- * Creates new short URL
- * - Accepts full URL from form
- * - Generates unique short ID
- * - Saves to database
- * Redirects back to home page
+   Creates new short URL
+   Redirects back to home page
  */
 router.post('/shorten', async (req, res) => {
   try {
@@ -54,10 +51,12 @@ router.post('/shorten', async (req, res) => {
       return res.redirect('/?error=URL exceeds maximum length of 2000 characters');
     }
 
-    // Validate URL resolves to a working destination (optional)
-    /* if (!await isUrlReachable(fullUrl)) {
+    // Validate URL resolves to a working destination
+     if (!await isUrlReachable(fullUrl)) {
       return res.redirect('/?error=URL does not appear to be reachable');
-    } */
+    }
+
+
 
     let shortCode;
 
@@ -112,10 +111,10 @@ router.post('/shorten', async (req, res) => {
 /**
  * GET /:shortUrl
  * Redirects to original URL
- * - Finds URL by short code
- * - Increments click counter
- * - Redirects to original URL
- * Returns 404 if not found
+   - Finds URL by short code
+   - Increments click counter
+   - Redirects to original URL
+   Returns 404 if not found
  */
 router.get('/:shortUrl', async (req, res) => {
   try {
@@ -136,11 +135,11 @@ router.get('/:shortUrl', async (req, res) => {
 });
 
 /**
- * DELETE /:shortUrl
- * Deletes a short URL
- * - Finds URL by short code
- * - Deletes from database
- * Returns 404 if not found
+   DELETE /:shortUrl
+   Deletes a short URL
+   - Finds URL by short code
+   - Deletes from database
+   Returns 404 if not found
  */
 router.delete('/:shortUrl', async (req, res) => {
     try {
@@ -157,14 +156,14 @@ router.delete('/:shortUrl', async (req, res) => {
     }
 });
 
-// Optional URL reachability checker (uncomment to use)
-/* async function isUrlReachable(url) {
+// Optional URL reachability checker
+ async function isUrlReachable(url) {
   try {
     const response = await fetch(url, { method: 'HEAD', timeout: 5000 });
     return response.ok;
   } catch {
     return false;
   }
-} */
+} 
 
 module.exports = router;

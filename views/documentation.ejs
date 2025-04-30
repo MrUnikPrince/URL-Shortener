@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener Documentation</title>
+    <style>
+@page {
+    size: A4;
+    margin: 2cm;
+}
+
+body {
+    width: 21cm;
+    min-height: 29.7cm;
+    margin: 0 auto;
+    padding: 2.5cm;
+    background: white;
+    color: #333;
+    font-family: 'Times New Roman', serif;
+    line-height: 1.4;
+    font-size: 12pt;
+}
+
+h1 {
+    font-size: 24pt;
+    font-weight: bold;
+    text-align: center;
+    margin: 0 0 36pt;
+    border-bottom: 2pt solid #000;
+    padding-bottom: 12pt;
+}
+
+h2 {
+    font-size: 14pt;
+    font-weight: bold;
+    margin: 24pt 0 12pt;
+    page-break-after: avoid;
+}
+
+h3 {
+    font-size: 12pt;
+    font-weight: bold;
+    margin: 12pt 0 6pt;
+    color: #444;
+    margin-top: 18pt;
+}
+
+.doc-section {
+    margin: 18pt 0;
+    padding: 12pt;
+    border: 0.5pt solid #ddd;
+    page-break-inside: avoid;
+}
+
+.feature-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12pt 0;
+}
+
+.feature-table th,
+.feature-table td {
+    border: 0.5pt solid #ddd;
+    padding: 6pt;
+    vertical-align: top;
+}
+
+.feature-table th {
+    background: #f8f8f8;
+    font-weight: bold;
+}
+
+.tech-stack {
+    margin: 12pt 0;
+}
+
+.tech-card {
+    margin: 6pt 0;
+    padding: 6pt;
+    border-left: 3pt solid #000;
+}
+
+.process-steps {
+    margin: 12pt 0 0;
+}
+
+.step {
+    margin: 0 0 12pt 12pt;
+    padding-left: 12pt;
+    border-left: 1pt solid #000;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 12pt 0;
+    border-top: 1pt solid #ddd;
+}
+
+.footer-content {
+    max-width: 21cm;
+    margin: 0 auto;
+    padding: 0 2.5cm;
+    font-size: 10pt;
+    color: #666;
+}
+
+@media print {
+    body {
+        padding: 2cm;
+    }
+    
+    .doc-section {
+        border: none;
+        padding: 0;
+    }
+    
+    footer {
+        position: fixed;
+    }
+}
+
+.spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12pt 0;
+}
+
+.spec-table td, .spec-table th {
+    border: 1pt solid #000;
+    padding: 6pt;
+}
+
+pre {
+    background: #f8f8f8;
+    border: 0.5pt solid #ddd;
+    padding: 12pt;
+    margin: 12pt 0;
+    font-family: 'Courier New', monospace;
+    font-size: 10pt;
+    white-space: pre-wrap;
+}
+
+ul {
+    margin: 12pt 0;
+    padding-left: 24pt;
+}
+
+li {
+    margin: 6pt 0;
+}
+
+.tech-stack-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18pt 0;
+}
+
+.tech-stack-table td, .tech-stack-table th {
+    border: 1pt solid #000;
+    padding: 8pt;
+    text-align: left;
+}
+
+ol {
+    margin: 12pt 0;
+    padding-left: 24pt;
+}
+    </style>
+</head>
+<body>
+    <h1>URL Shortener Service Documentation<br><small>Technical Deep Dive</small></h1>
+
+    <div class="doc-section">
+        <h2>1. Feature Breakdown</h2>
+        <h3>Core Features</h3>
+        <ul>
+            <li><strong>URL Shortening:</strong> Convert long URLs to 6-8 character codes using Base62 encoding</li>
+            <li><strong>Custom Aliases:</strong> Users can create memorable short codes (3-20 chars)</li>
+            <li><strong>Analytics:</strong> Track total clicks, referrers, and timestamps</li>
+            <li><strong>QR Codes:</strong> Generate printable QR codes for each short URL</li>
+        </ul>
+        
+        <h3>Advanced Features</h3>
+        <ul>
+            <li><strong>Link Expiration:</strong> Set TTL from 1 hour to 1 year</li>
+            <li><strong>Bulk Import:</strong> CSV upload for mass URL shortening</li>
+            <li><strong>API Access:</strong> REST endpoints for integration</li>
+        </ul>
+    </div>
+
+    <div class="doc-section">
+        <h2>2. Technology Stack</h2>
+        <table class="tech-stack-table">
+            <tr>
+                <th>Layer</th>
+                <th>Technology</th>
+                <th>Purpose</th>
+            </tr>
+            <tr>
+                <td>Frontend</td>
+                <td>EJS + Bootstrap</td>
+                <td>Server-side rendered UI</td>
+            </tr>
+            <tr>
+                <td>Backend</td>
+                <td>Node.js + Express</td>
+                <td>Routing and business logic</td>
+            </tr>
+            <tr>
+                <td>Database</td>
+                <td>MongoDB</td>
+                <td>Store URLs and analytics</td>
+            </tr>
+            <tr>
+                <td>Caching</td>
+                <td>Redis</td>
+                <td>Rate limiting and hot data</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="doc-section">
+        <h2>3. Use Case Analysis</h2>
+        <h3>Primary Use Cases</h3>
+        <ul>
+            <li><strong>Social Media Marketing:</strong> Shorten links for Twitter/X</li>
+            <li><strong>Email Campaigns:</strong> Track click-through rates</li>
+            <li><strong>Printed Materials:</strong> QR codes for posters/flyers</li>
+        </ul>
+        
+        <h3>Enterprise Usage</h3>
+        <ul>
+            <li>Internal link management for large organizations</li>
+            <li>API integration with marketing automation tools</li>
+        </ul>
+    </div>
+
+    <div class="doc-section">
+        <h2>4. Development Challenges</h2>
+        <h3>Technical Hurdles</h3>
+        <ul>
+            <li><strong>Collision Handling:</strong> Ensuring unique short codes</li>
+            <li><strong>Scale:</strong> Supporting 10k+ req/sec</li>
+            <li><strong>Validation:</strong> Sanitizing user inputs</li>
+        </ul>
+        
+        <h3>Solutions Implemented</h3>
+        <ul>
+            <li>Base62 encoding with collision fallback</li>
+            <li>Redis-based rate limiting</li>
+            <li>Regular expression validation</li>
+        </ul>
+    </div>
+
+    <div class="doc-section">
+        <h2>5. Implementation Strategy</h2>
+        <h3>Development Phases</h3>
+        <ol>
+            <li>Core Shortening (Week 1-2)</li>
+            <li>Analytics System (Week 3)</li>
+            <li>QR Generation (Week 4)</li>
+            <li>API Endpoints (Week 5)</li>
+        </ol>
+        
+        <h3>Testing Approach</h3>
+        <ul>
+            <li>Jest for unit tests</li>
+            <li>Load testing with Artillery</li>
+            <li>Security audit with OWASP ZAP</li>
+        </ul>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            Implementation Date: <%= new Date().toLocaleDateString() %><br>
+            Author: Prince | Document Version: 1.0
+        </div>
+    </footer>
+</body>
+</html> 
